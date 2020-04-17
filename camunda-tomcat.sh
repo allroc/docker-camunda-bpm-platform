@@ -42,11 +42,6 @@ if [ -z "$SKIP_DB_CONFIG" ]; then
     ${CATALINA_HOME}/conf/server.xml
 fi
 
-JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -Xmx400m -XX:MaxMetaspaceSize=100m"
-sed -i -e 's|8080|'$PORT'|' /camunda/conf/server.xml
-sed -i -e 's|<!-- <filter>|<filter>|' /camunda/webapps/engine-rest/WEB-INF/web.xml
-sed -i -e 's|</filter-mapping> -->|</filter-mapping>|' /camunda/webapps/engine-rest/WEB-INF/web.xml
-
 CMD="${CATALINA_HOME}/bin/catalina.sh"
 if [ "${DEBUG}" = "true" ]; then
   echo "Enabling debug mode, JPDA accesible under port 8000"
